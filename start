@@ -1,0 +1,5 @@
+sudo bash qg.sh
+
+#Enter geth command string args on this line
+
+geth --rpc &

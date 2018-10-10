@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 import os # For backwards compatibility and other stuff
 from subprocess import Popen, PIPE
@@ -18,27 +19,26 @@ NGINX_ROOT_DIRECTORY = "/etc/nginx/"
 SITES_DIRECTORY = "/etc/nginx/sites-available"
 NGINX_SITE_FILE = "default"
 
+# NGINX Config File
+
 NGINX_CONFIG = """
 server {
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
-    server_name {server_name};
-
+    server_name %s;
 
     # Geth proxy that password protects the public Internet endpoint
     location / {
-        auth_basic "Restricted access to this site";
-        auth_basic_user_file {password_dir}{password_fil};
+        auth_basic \"Restricted\";
+        auth_basic_user_file %s;
 
         # Proxy to geth note that is bind to localhost port
-        proxy_pass http://localhost:{port};
+        proxy_pass http://localhost:%s;
     }
-
 }
-""".format(server_name = SERVER_NAME,
-           port = PORT,
-           password_dir = PASSWORD_DIRECTORY,
-           password_fil = PASSWORD_FILE)
+""".format(SERVER_NAME,
+           os.path.join(PASSWORD_DIRECTORY,PASSWORD_FILE),
+           PORT)
 
 
 # Backup old NGINX Default
@@ -51,8 +51,8 @@ backup_nginx_command = "sudo cp {dir_and_file} {backup_loc}".format(
                                            )
 
 # Clear old NGINX FILE
-file_clear_command = "sudo rm {fil_loc}".format(fil_loc = rewrite_location)
-file_write_command = "sudo echo {contents} >> {target_file}".format(contents = NGINX_CONFIG, target_file = rewrite_location)
+file_clear_command = "sudo -S rm {fil_loc}".format(fil_loc = rewrite_location)
+file_write_command = "sudo -S echo {contents} >> {target_file}".format(contents = NGINX_CONFIG, target_file = rewrite_location)
 
 # Run Backup
 os.system(backup_nginx_command)
