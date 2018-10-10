@@ -43,7 +43,7 @@ server {
 
 # Backup old NGINX Default
 
-rewrite_location = os.path.join(NGINX_ROOT_DIRECTORY, NGINX_SITE_FILE)
+rewrite_location = os.path.join(SITES_DIRECTORY, NGINX_SITE_FILE)
 
 backup_nginx_command = "sudo cp {dir_and_file} {backup_loc}".format(
                                               dir_and_file = rewrite_location,
