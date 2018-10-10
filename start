@@ -1,5 +1,5 @@
 sudo bash ./scripts/qg.sh
 
 #Enter geth command string args on this line
-
+sudo service nginx restart
 geth --rpc &

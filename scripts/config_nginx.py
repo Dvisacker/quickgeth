@@ -36,7 +36,7 @@ server {
         proxy_pass http://localhost:%s;
     }
 }
-""".format(SERVER_NAME,
+""" % (SERVER_NAME,
            os.path.join(PASSWORD_DIRECTORY,PASSWORD_FILE),
            PORT)
 
@@ -52,7 +52,7 @@ backup_nginx_command = "sudo cp {dir_and_file} {backup_loc}".format(
 
 # Clear old NGINX FILE
 file_clear_command = "sudo -S rm {fil_loc}".format(fil_loc = rewrite_location)
-file_write_command = "sudo -S echo {contents} >> {target_file}".format(contents = NGINX_CONFIG, target_file = rewrite_location)
+file_write_command = 'sudo -S echo "{contents}" >> {target_file}'.format(contents = NGINX_CONFIG, target_file = rewrite_location)
 
 # Run Backup
 os.system(backup_nginx_command)

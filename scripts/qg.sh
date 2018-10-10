@@ -28,7 +28,7 @@ sudo apt-get install -y nginx
 # Setting up nginx config with Python
 # Using Python here for more elegant string manipulations
 sudo apt-get install -y python
-./config_nginx.py
+./scripts/config_nginx.py
 
 # Creating Password
 sudo apt-get install -y apache2-utils
