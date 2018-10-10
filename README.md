@@ -3,7 +3,7 @@
 - Run start with ./start in Ubuntu 16.04+
 - Set username in the scripts/qg.sh file
 - password will be set during install
-- access with http://<username>:<password>@<server_ip>/
+- access with http://USERNAME:PASSWORD@<server_ip>/
 - Enjoy!
  
  
