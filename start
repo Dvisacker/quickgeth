@@ -1,4 +1,4 @@
-sudo bash qg.sh
+sudo bash ./scripts/qg.sh
 
 #Enter geth command string args on this line
 
